@@ -78,6 +78,8 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
 ### :fire: My Stats :
 
+<img src="https://celebaltech.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcelebal-logo.4c6b3a75.png&w=3840&q=75" width="40" height="40"/>
+
 <a href="https://git.io/streak-stats"><img src="https://github-readme-streak-stats.herokuapp.com?user=ManishRB21&theme=dark&border_radius=3.5" alt="GitHub Streak" /></a>
 
 <a href="https://github.com/anuraghazra/github-readme-stats"><img src="https://github-readme-stats.vercel.app/api?username=ManishRB21" alt="GitHub stat" /></a>
