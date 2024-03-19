@@ -78,7 +78,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
 ### :fire: My Stats and past companies :
 <div>
-<img src="https://celebaltech.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcelebal-logo.4c6b3a75.png&w=3840&q=75" width="150" height="50"/>
+<img src="https://celebaltech.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcelebal-logo.4c6b3a75.png&w=3840&q=75" width="150" height="50" margin-right="70px"/>
 <img src="https://flipshope.com/_next/image?url=%2Fstatic%2Fimg%2Flogo.png&w=1920&q=75" width="150" height="50"/>
 <img src="https://www.lgsoftindia.com/images/logo.png" width="150" height="50"/>
 </div>
