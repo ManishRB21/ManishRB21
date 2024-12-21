@@ -22,8 +22,8 @@
 <div align="center">
   <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="600" height="300"/>
 </div>
-
 </div>
+
 ---
 
 ### :man_technologist: About Me :
@@ -35,6 +35,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 - :zap: In my free time, I learn about tech stacks and read tech articles.
 
 - :mailbox:How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-Manish-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/manish-ranjan-behera/)
+- 
 ---
 
 ### :hammer_and_wrench: Languages and Tools :
@@ -85,6 +86,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
 ### 📊 GitHub Stats:
 <a href="https://git.io/streak-stats"><img src="https://github-readme-streak-stats.herokuapp.com?user=ManishRB21&theme=dark&border_radius=3.5" alt="GitHub Streak" /></a>
+
 <a href="https://github.com/anuraghazra/github-readme-stats"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ManishRB21" alt="GitHub Lang" /></a>
 
 ### 🏆 GitHub Trophies
