@@ -92,7 +92,74 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 ### 🏆 GitHub Trophies
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=manishrb21" alt="manishrb21" /></a> </p>
 
+// ==UserScript==
+// @name         Log HackerRank Question & Solution (Dual URL)
+// @namespace    http://tampermonkey.net/
+// @version      1.5
+// @description  Fetch and log HackerRank question title and C++
+solution from multiple URLs
+// @author       You
+// @match        https://www.hackerrank.com/challenges/*
+// @grant        none
+// ==/UserScript==
 
+(function() {
+    'use strict';
+
+    let fullTitle = document.title;
+    let questionName = fullTitle.split("|")[0].trim();
+
+    let formattedTitle = questionName.toLowerCase().replace(/\s+/g, '');
+
+    console.log("HackerRank Question:", questionName);
+
+    let solutionURLs = [
+        `https://hackerranksolution.in/${formattedTitle}ds/`,
+        `https://hackerranksolution.in/${formattedTitle}algo/`,
+        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`
+
+    ];
+
+    console.log("Trying solution URLs:", solutionURLs);
+
+
+    function fetchSolution(urlIndex = 0) {
+        if (urlIndex >= solutionURLs.length) {
+            console.log("No working ");
+            return;
+        }
+
+        let url = solutionURLs[urlIndex];
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to fetch
+from: ${url}`);
+                return response.text();
+            })
+            .then(html => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(html, "text/html");
+
+                let codeBlock = doc.querySelector("pre code");
+                if (codeBlock) {
+                    let cppSolution = codeBlock.innerText;
+                    console.log("Found Solution at:", url);
+                    console.log("C++ Solution:\n", cppSolution);
+                } else {
+                    console.log(`No C++ solution found at ${url},
+trying next...`);
+                    fetchSolution(urlIndex + 1); // Try the next URL
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+                fetchSolution(urlIndex + 1);
+            });
+    }
+
+    fetchSolution();
+})();
 
 
 
