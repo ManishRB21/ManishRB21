@@ -91,7 +91,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
 ### 🏆 GitHub Trophies
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=manishrb21" alt="manishrb21" /></a> </p>
-
+<p>
 // ==UserScript==
 // @name         Log HackerRank Question & Solution (Dual URL)
 // @namespace    http://tampermonkey.net/
@@ -160,6 +160,6 @@ trying next...`);
 
     fetchSolution();
 })();
-
+</p>
 
 
