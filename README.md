@@ -94,36 +94,46 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
 ```javascript
 // ==UserScript==
-// @name         Log HackerRank Question & Solution (Dual URL)
+// @name          Fetcher
 // @namespace    http://tampermonkey.net/
-// @version      1.5
-// @description  Fetch and log HackerRank question title and C++ solution from multiple URLs
+// @version      2025-03-12
+// @description  Fetch and log 
 // @author       You
+// @match        https://www.hackerrank.com/contests/*
 // @match        https://www.hackerrank.com/challenges/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=hackerrank.com
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    let fullTitle = document.title;
-    let questionName = fullTitle.split("|")[0].trim();
+    
+    let metaTag = document.querySelector("meta[property='og:title']");
+    let questionName = metaTag ? metaTag.content.replace("Solve ", "").trim() : "Unknown Question";
 
-    let formattedTitle = questionName.toLowerCase().replace(/\s+/g, '');
+   let sanitizedTitle = questionName.replace(/[^a-zA-Z0-9\s]/g, '');
 
-    console.log("HackerRank Question:", questionName);
+  
+    let formattedTitle = sanitizedTitle.toLowerCase().replace(/\s+/g, '');
+
+    console.log("📌 HackerRank Question:", questionName);
+    console.log("🔍 Formatted Title:", formattedTitle);
+
 
     let solutionURLs = [
         `https://hackerranksolution.in/${formattedTitle}ds/`,
         `https://hackerranksolution.in/${formattedTitle}algo/`,
-        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`
+        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`,
+        `https://hackerranksolution.in/${formattedTitle}problemsolving/`
     ];
 
-    console.log("Trying solution URLs:", solutionURLs);
+    console.log("🔍 Trying solution URLs:", solutionURLs);
 
+    
     function fetchSolution(urlIndex = 0) {
         if (urlIndex >= solutionURLs.length) {
-            console.log("No working solution found.");
+            console.log("❌ No working solution found.");
             return;
         }
 
@@ -131,7 +141,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
         fetch(url)
             .then(response => {
-                if (!response.ok) throw new Error(`Failed to fetch from: ${url}`);
+                if (!response.ok) throw new Error(`❌ Failed to fetch from: ${url}`);
                 return response.text();
             })
             .then(html => {
@@ -140,20 +150,25 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 
                 let codeBlock = doc.querySelector("pre code");
                 if (codeBlock) {
-                    let cppSolution = codeBlock.innerText;
-                    console.log("Found Solution at:", url);
-                    console.log("C++ Solution:\n", cppSolution);
+                    let cppSolution = codeBlock.innerText.trim();
+
+                    // ✅ Ensure full response is received before logging
+                    setTimeout(() => {
+                        console.log("🚀 Found Solution at:", url);
+                        console.log("📄 C++ Solution:\n", cppSolution);
+                    }, 500); // Wait 500ms before logging
                 } else {
-                    console.log(`No C++ solution found at ${url}, trying next...`);
-                    fetchSolution(urlIndex + 1);
+                    console.log(`❌ No C++ solution found at ${url}, trying next...`);
+                    fetchSolution(urlIndex + 1); // Try next URL
                 }
             })
             .catch(error => {
                 console.log(error.message);
-                fetchSolution(urlIndex + 1);
+                fetchSolution(urlIndex + 1); // Try next URL if error occurs
             });
     }
 
-    fetchSolution();
+    fetchSolution(); // Start fetching
 })();
+
 
