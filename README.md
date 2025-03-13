@@ -101,6 +101,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 // @author       You
 // @match        https://www.hackerrank.com/contests/*
 // @match        https://www.hackerrank.com/challenges/*
+// @match        https://www.hackerrank.com/* 
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=hackerrank.com
 // @grant        none
 // ==/UserScript==
@@ -129,7 +130,9 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
     let solutionURLs = [
         `https://hackerranksolution.in/${formattedTitle}ds/`,
         `https://hackerranksolution.in/${formattedTitle}algo/`,
-        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`
+        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`,
+        `https://hackerranksolution.in/${formattedTitle}problemsolving/`,
+        `https://hackerranksolution.in/${formattedTitle}datastructures/`
     ];
 
     console.log("🔍 Trying solution URLs:", solutionURLs);
