@@ -93,86 +93,107 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=manishrb21" alt="manishrb21" /></a> </p>
 
 ```javascript
-// ==UserScript==
-// @name          Fetcher
-// @namespace    http://tampermonkey.net/
-// @version      2025-03-12
-// @description  Fetch and log
-// @author       You
-// @match        https://www.hackerrank.com/contests/*
-// @match        https://www.hackerrank.com/challenges/*
-// @match        https://www.hackerrank.com/* 
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=hackerrank.com
-// @grant        none
-// ==/UserScript==
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_set>
+#include <string>
+#include <cmath>
 
-(function() {
-    'use strict';
+using namespace std;
 
+// Function to count number of divisors of a number
+int countDivisors(int n) {
+    int count = 0;
+    for (int i = 1; i * i <= n; ++i) {
+        if (n % i == 0) {
+            count += (i == n / i) ? 1 : 2;
+        }
+    }
+    return count;
+}
 
-      // ✅ Extract Question Name from <meta property='og:title'>
-    let metaTag = document.querySelector("meta[property='og:title']");
-    let questionName = metaTag ? metaTag.content.replace("Solve ", "").trim() : "Unknown Question";
+// Check if two numbers differ by exactly one digit
+bool isOneDigitDiff(int a, int b) {
+    string sa = to_string(a);
+    string sb = to_string(b);
+    if (sa.length() != sb.length()) return false;
+    
+    int diff = 0;
+    for (size_t i = 0; i < sa.length(); ++i) {
+        if (sa[i] != sb[i]) ++diff;
+    }
+    return diff == 1;
+}
 
-    // ✅ Remove everything after '|' (e.g., "Goodland Electricity | HackerRank" → "Goodland Electricity")
-    questionName = questionName.split('|')[0].trim();
+// Generate all valid neighbors (only 1 digit different and same number of divisors)
+vector<int> generateNeighbors(int num, int targetDivisors) {
+    vector<int> neighbors;
+    string s = to_string(num);
+    int len = s.length();
+    
+    for (int i = 0; i < len; ++i) {
+        char original = s[i];
+        for (char d = '0'; d <= '9'; ++d) {
+            if (d == original) continue;
+            s[i] = d;
+            if (s[0] != '0') {
+                int newNum = stoi(s);
+                if (countDivisors(newNum) == targetDivisors) {
+                    neighbors.push_back(newNum);
+                }
+            }
+        }
+        s[i] = original;  // Restore original digit
+    }
+    return neighbors;
+}
 
-    // ✅ Remove commas, special characters, and symbols
-    let sanitizedTitle = questionName.replace(/[^a-zA-Z0-9\s]/g, ''); // Removes commas and special characters
+// BFS to find path from source to destination
+vector<int> findPath(int source, int destination) {
+    unordered_set<int> visited;
+    queue<pair<int, vector<int>>> q;
+    q.push({source, {source}});
+    visited.insert(source);
 
-    // ✅ Format the title (Lowercase, No Spaces)
-    let formattedTitle = sanitizedTitle.toLowerCase().replace(/\s+/g, '');
+    int sourceDivs = countDivisors(source);
+    
+    while (!q.empty()) {
+        auto [curr, path] = q.front();
+        q.pop();
 
-    console.log("📌 HackerRank Question:", questionName);
-    console.log("🔍 Formatted Title:", formattedTitle);
-
-    // ✅ Try Fetching from Multiple Solution URLs
-    let solutionURLs = [
-        `https://hackerranksolution.in/${formattedTitle}ds/`,
-        `https://hackerranksolution.in/${formattedTitle}algo/`,
-        `https://hackerranksolution.in/${formattedTitle}ProblemSolving/`,
-        `https://hackerranksolution.in/${formattedTitle}problemsolving/`,
-        `https://hackerranksolution.in/${formattedTitle}datastructures/`
-    ];
-
-    console.log("🔍 Trying solution URLs:", solutionURLs);
-
-
-    function fetchSolution(urlIndex = 0) {
-        if (urlIndex >= solutionURLs.length) {
-            console.log("❌ No working solution found.");
-            return;
+        if (curr == destination) {
+            return path;
         }
 
-        let url = solutionURLs[urlIndex];
+        vector<int> neighbors = generateNeighbors(curr, sourceDivs);
+        for (int neighbor : neighbors) {
+            if (visited.find(neighbor) == visited.end()) {
+                visited.insert(neighbor);
+                vector<int> newPath = path;
+                newPath.push_back(neighbor);
+                q.push({neighbor, newPath});
+            }
+        }
+    }
+    return {};  // No path found
+}
 
-        fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error(`❌ Failed to fetch from: ${url}`);
-                return response.text();
-            })
-            .then(html => {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(html, "text/html");
+int main() {
+    int source = 2023;
+    int destination = 2123;
 
-                let codeBlocks = doc.querySelectorAll("pre code"); // Select all <pre><code> blocks
-                if (codeBlocks.length > 0) {
-                    console.log("🚀 Found Solution at:", url);
-                    codeBlocks.forEach((block, index) => {
-                        let cppSolution = block.innerText.trim();
-                        console.log(`📄 C++ Solution (${index + 1}):\n`, cppSolution);
-                    });
-                } else {
-                    console.log(`❌ No C++ solution found at ${url}, trying next...`);
-                    fetchSolution(urlIndex + 1); // Try next URL
-                }
-            })
-            .catch(error => {
-                console.log(error.message);
-                fetchSolution(urlIndex + 1); // Try next URL if error occurs
-            });
+    vector<int> path = findPath(source, destination);
+    if (!path.empty()) {
+        cout << "Path: ";
+        for (int num : path) {
+            cout << num << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "No path found." << endl;
     }
 
-    fetchSolution(); // Start fetching
-})();
+    return 0;
+}
 
