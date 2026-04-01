@@ -74,22 +74,13 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 </div>
 
 ---
+## GitHub Activity Graph
 
-### :office: Work Experience :
-
-<img src="https://flipshope.com/_next/image?url=%2Fstatic%2Fimg%2Flogo.png&w=1920&q=75" width="150" height="50"/>
-<img src="https://www.lgsoftindia.com/images/logo.png" width="150" height="50"/>
-
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=ManishRB21&radius=16&theme=react&area=true&order=5" height="300" alt="activity-graph" />
 ---
 
 ### 📊 GitHub Stats:
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=manishrb21&show_icons=true&locale=en&layout=compact" alt="manishrb21" /></p>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=ManishRB21&theme=default" alt="GitHub Streak" />
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=manishrb21&show_icons=true&locale=en" alt="manishrb21" /></p>
-
-### 🏆 GitHub Trophies
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=manishrb21" alt="manishrb21" /></a> </p>
-
-https://leetcode.com/discuss/post/6834384/all-interview-experiences-switch-journey-vpu1/
 
