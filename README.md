@@ -79,6 +79,7 @@ I am a Full Stack Developer <img src="https://media.giphy.com/media/WUlplcMpOCEm
 ## GitHub Activity Graph
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=ManishRB21&radius=16&theme=react&area=true&order=5" height="300" alt="activity-graph" />
+
 ---
 
 ### 📊 GitHub Stats:
